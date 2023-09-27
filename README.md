@@ -13,18 +13,18 @@ AWS Glue Data Quality currently available only on Commercial Regions, not yet on
       - DQ_Suggestions stored in DynamoDB table dqsuggestions
       - DQ_Recommend_Rulesets transforms dqsuggestions into default dqrulesets for each dataset.
         - Default Rulesets should be reviewed and edited by an Analyst or Admin.  
--  
+   
 - Ruleset Evaluations are performed on daily inputs to evaluate each file's compliance with the specified Ruleset.
   - EventBridge Rule DQ.EVALRULES.DAILY initiates Step Function DQ_Evaluate_Rulesets to run a Glue ETL job for a Batch of daily files in order to evaluate results for each dataset.
   - Results are tallied and scored to provide and overall assessment of the dataset
   - Results are stored in DynamoDB table dqresults
--  
+  
 - SIMPLE File Processing Integration
   - Data Quality Glue ETL jobs log results into the DynamoDB batch table, same as the File Processing routines.  
   - DQ Step Functions evaluate DQ Batch Status and send notifications to same SNS subscribers.
   - DQ Step Functions are separate for now, but can easily integrate DQ Steps into File Processing workflows
   - Subscribe to SNS Topic dtl-prd-SMPL0-Batch_Status for DDMAP File Processing and Data Quality email notifications 
--
+
 - Glue Catalog & Redshift Spectrum Integration
   - Lambda function  exports flattened versions of each of the DynamoDB tables into PARQUET datasets, cataloged in Glue database, accessible via Redshift Spectrum schema
     - *-latest* tables catalog only the most-recent dataset
