@@ -407,6 +407,7 @@ class SimpleDQ:
     def list_data_quality_results(self, **kwargs): pass # ToDo
     def list_data_quality_rule_recommendation_runs(self, **kwargs): pass # ToDo
     def list_data_quality_ruleset_evaluation_runs(self, **kwargs): pass # ToDo
+
     def list_data_quality_rulesets(self, **kwargs): pass # ToDo
 
     def start_data_quality_profile_run(self, **kwargs):
